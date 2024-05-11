@@ -14,3 +14,8 @@ Project.create!(
     { title: "証券会社向け税関事務処理システム", start_date: "2024-04-01", end_date: nil },
   ]
 )
+
+# Skill
+%w[ JavaScript Python TypeScript Java C# C++ PHP C Ruby Go ].each do |language|
+  Skill.create!(name: language, level: rand(1..100))
+end
