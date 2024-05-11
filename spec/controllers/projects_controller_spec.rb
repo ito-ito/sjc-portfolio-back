@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe CareersController, type: :request do
-  let(:career) { create(:career) }
-  let(:params) { {career: {title: 'title', start_date: '2024-04-01'.to_date }}}
+describe ProjectsController, type: :request do
+  let(:project) { create(:project) }
+  let(:params) { {project: {title: 'title', start_date: '2024-04-01'.to_date }}}
 
   describe 'GET #index' do
-    subject { get "/careers", params: path_parameters }
+    subject { get "/projects", params: path_parameters }
 
-    before { create_list(:career, 10) }
+    before { create_list(:project, 10) }
 
     let(:path_parameters) { nil }
 
@@ -35,7 +35,7 @@ describe CareersController, type: :request do
   end
 
   describe 'GET #show' do
-    subject { get "/careers/#{career.id}" }
+    subject { get "/projects/#{project.id}" }
 
     it do
       subject
@@ -44,7 +44,7 @@ describe CareersController, type: :request do
   end
 
   describe 'POST #create' do
-    subject { post '/careers', params: params }
+    subject { post '/projects', params: params }
 
     it do
       subject
@@ -53,7 +53,7 @@ describe CareersController, type: :request do
   end
 
   describe 'PUT #update' do
-    subject { put "/careers/#{career.id}", params: params  }
+    subject { put "/projects/#{project.id}", params: params  }
 
     it do
       subject
@@ -62,7 +62,7 @@ describe CareersController, type: :request do
   end
 
   describe 'DELETE #destroy' do
-    subject { delete "/careers/#{career.id}" }
+    subject { delete "/projects/#{project.id}" }
 
     it do
       subject

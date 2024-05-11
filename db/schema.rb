@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_231524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "careers", force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
     t.string "title"
     t.date "start_date"
     t.date "end_date"

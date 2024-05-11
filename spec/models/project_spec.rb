@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-describe Career, type: :model do
+describe Project, type: :model do
   describe 'validate' do
-    subject { career.valid? }
+    subject { project.valid? }
 
     context 'vaid' do
-      let(:career) { build(:career) }
+      let(:project) { build(:project) }
       it { is_expected.to be_truthy}
     end
 
     context 'title is nil' do
-      let(:career) { build(:career, title: nil) }
+      let(:project) { build(:project, title: nil) }
       it {is_expected.to be_falsy}
     end
     context 'start_date is nil' do
-      let(:career) { build(:career, start_date: nil) }
+      let(:project) { build(:project, start_date: nil) }
       it {is_expected.to be_falsy}
     end
   end
