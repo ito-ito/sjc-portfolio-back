@@ -3,7 +3,7 @@ class CareersController < ApplicationController
 
   # GET /careers
   def index
-    @careers = Career.all
+    @careers = Career.all.limit(params[:limit])
 
     render json: @careers
   end
