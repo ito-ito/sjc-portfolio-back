@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe DutiesController, type: :request do
-  let(:duty) { create(:duty) }
-  let(:params) { {duty: {title: 'title', start_date: '2024-04-01'.to_date }}}
+describe CareersController, type: :request do
+  let(:career) { create(:career) }
+  let(:params) { {career: {title: 'title', start_date: '2024-04-01'.to_date }}}
 
   describe 'GET #index' do
-    subject { get '/duties'}
+    subject { get "/careers" }
 
     it do
       subject
@@ -14,7 +14,7 @@ describe DutiesController, type: :request do
   end
 
   describe 'GET #show' do
-    subject { get "/duties/#{duty.id}" }
+    subject { get "/careers/#{career.id}" }
 
     it do
       subject
@@ -23,7 +23,7 @@ describe DutiesController, type: :request do
   end
 
   describe 'POST #create' do
-    subject { post '/duties', params: params }
+    subject { post '/careers', params: params }
 
     it do
       subject
@@ -32,7 +32,7 @@ describe DutiesController, type: :request do
   end
 
   describe 'PUT #update' do
-    subject { put "/duties/#{duty.id}", params: params  }
+    subject { put "/careers/#{career.id}", params: params  }
 
     it do
       subject
@@ -41,7 +41,7 @@ describe DutiesController, type: :request do
   end
 
   describe 'DELETE #destroy' do
-    subject { delete "/duties/#{duty.id}" }
+    subject { delete "/careers/#{career.id}" }
 
     it do
       subject

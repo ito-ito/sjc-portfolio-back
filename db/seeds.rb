@@ -1,4 +1,4 @@
-Duty.create!(
+Career.create!(
   [
     # A
     { title: "食品会社向け商品管理システムの保守", start_date:"2020-08-01", end_date:"2020-09-31" },

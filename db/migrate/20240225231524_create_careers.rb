@@ -1,6 +1,6 @@
-class CreateDuties < ActiveRecord::Migration[7.1]
+class CreateCareers < ActiveRecord::Migration[7.1]
   def change
-    create_table :duties do |t|
+    create_table :careers do |t|
       t.string :title
       t.date :start_date
       t.date :end_date
