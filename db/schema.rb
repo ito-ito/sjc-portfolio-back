@@ -14,6 +14,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_062845) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "url"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.date "start_date"
