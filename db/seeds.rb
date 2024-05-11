@@ -65,7 +65,7 @@ Product.create!(
         "運送業者が効率的かつ正確に費用を計算し、収益性を最適化するためのソリューションです。輸送コスト、燃料費、人件費などの要因を考慮し、適切な価格設定や運用戦略の決定を支援します。",
       url: nil,
       image_url:
-        "http://back:3000/back/images/transportation_industry_image.jpg"
+        "http://back:3000/images/transportation_industry_image.jpg"
     },
     {
       name: "食品会社向け商標審査システムおよび流通管理システム",
