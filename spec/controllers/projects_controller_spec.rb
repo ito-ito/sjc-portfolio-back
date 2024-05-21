@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ProjectsController, type: :request do
   let(:project) { create(:project) }
-  let(:params) { {project: {title: 'title', start_date: '2024-04-01'.to_date }}}
+  let(:params) { {project: {title: 'title', description: 'description_text', start_date: '2024-04-01'.to_date }}}
 
   describe 'GET #index' do
     subject { get "/projects", params: path_parameters }
