@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: SJC Portfolio
-  version: 1.0.0
+  version: 1.0.1
 servers:
   - url: https://back/
 tags:
@@ -18,7 +18,7 @@ paths:
         - product
       summary: Create product
       operationId: postProducts
-      description: Create a new Product
+      description: Create product
       requestBody:
         description: Create a new Product
         content:
@@ -40,7 +40,7 @@ paths:
         - product
       summary: Get all products.
       operationId: getProducts
-      description: Returns an array of Product
+      description: Index products
       responses:
         "200":
           description: Successful operation
@@ -57,7 +57,7 @@ paths:
         - product
       summary: Get product by Id.
       operationId: getProduct
-      description: hoge
+      description: Show product
       parameters:
         - $ref: "#/components/parameters/ProductId"
       responses:
@@ -73,9 +73,9 @@ paths:
     put:
       tags:
         - product
-      summary: 成果物の更新
+      summary: Update product by Id.
       operationId: putProduct
-      description: hoge
+      description: Update product
       parameters:
         - $ref: "#/components/parameters/ProductId"
       responses:
@@ -93,9 +93,9 @@ paths:
     delete:
       tags:
         - product
-      summary: 成果物の削除
+      summary: Delete product by Id.
       operationId: deleteProduct
-      description: hoge
+      description: Delete product
       parameters:
         - $ref: "#/components/parameters/ProductId"
       responses:
