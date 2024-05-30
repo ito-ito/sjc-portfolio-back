@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: SJC Portfolio
+  version: 1.0.0
+servers:
+  - url: https://back/
+tags:
+  - name: product
+    description: Product
+  - name: project
+    description: Project
+  - name: skill
+    description: Skill
+paths:
+  /products:
+    post:
+      tags:
+        - product
+      summary: Create product
+      operationId: postProducts
+      description: Create a new Product
+      requestBody:
+        description: Create a new Product
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          $ref: "#/components/responses/invalidInput"
+      security: []
+    get:
+      tags:
+        - product
+      summary: Get all products.
+      operationId: getProducts
+      description: Returns an array of Product
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+      security: []
+  /products/{id}:
+    get:
+      tags:
+        - product
+      summary: Get product by Id.
+      operationId: getProduct
+      description: hoge
+      parameters:
+        - $ref: "#/components/parameters/ProductId"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+    put:
+      tags:
+        - product
+      summary: 成果物の更新
+      operationId: putProduct
+      description: hoge
+      parameters:
+        - $ref: "#/components/parameters/ProductId"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          $ref: "#/components/responses/invalidInput"
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+    delete:
+      tags:
+        - product
+      summary: 成果物の削除
+      operationId: deleteProduct
+      description: hoge
+      parameters:
+        - $ref: "#/components/parameters/ProductId"
+      responses:
+        "204":
+          description: Successful operation
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+
+components:
+  parameters:
+    ProductId:
+      name: id
+      in: path
+      description: 製品ID
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          description: 製品名
+          example: "製品名"
+        description:
+          type: string
+          nullable: true
+          description: 製品の説明
+          example: "製品の説明"
+        url:
+          type: string
+          nullable: true
+          description: 製品のURL
+          example: "https://example.com/"
+        image_url:
+          type: string
+          nullable: true
+          description: 製品のイメージURL
+          example: "https://example.com/sample.png"
+      additionalProperties: false
+    Error:
+      type: object
+      required:
+        - message
+        - errors
+      properties:
+        message:
+          type: string
+          example: "error message"
+        errors:
+          type: array
+          items:
+            type: string
+            example: "description error message"
+      additionalProperties: false
+  responses:
+    invalidInput:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    notFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"

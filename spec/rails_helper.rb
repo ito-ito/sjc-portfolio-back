@@ -66,4 +66,13 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   # config.include Devise::Test::IntegrationHelpers, type: :request
+
+  # committee-rails
+  config.include Committee::Rails::Test::Methods
+
+  config.add_setting :committee_options
+  config.committee_options = {
+    schema_path: Rails.root.join('etc/doc/openapi.yaml'),
+    old_assert_behavior: false
+  }
 end

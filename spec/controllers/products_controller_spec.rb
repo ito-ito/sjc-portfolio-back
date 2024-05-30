@@ -11,16 +11,32 @@ describe ProductsController, type: :request do
 
     it do
       subject
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
+      assert_schema_conform
     end
   end
 
   describe 'GET #show' do
-    subject { get "/products/#{product.id}" }
+    subject { get "/products/#{product_id}" }
 
-    it do
-      subject
-      expect(response).to have_http_status(:success)
+    let(:product_id) { product.id }
+
+    context 'product_id is exist' do
+      it do
+        subject
+        expect(response).to have_http_status(200)
+        assert_schema_conform
+      end
+    end
+
+    context 'product_id is not exist' do
+      let(:product_id) { 99999 }
+
+      it do
+        subject
+        expect(response).to have_http_status(404)
+        assert_schema_conform
+      end
     end
   end
 
@@ -29,25 +45,56 @@ describe ProductsController, type: :request do
 
     it do
       subject
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(201)
+      assert_schema_conform
     end
   end
 
   describe 'PUT #update' do
-    subject { put "/products/#{product.id}", params: params  }
+    subject { put "/products/#{product_id}", params: params  }
 
-    it do
-      subject
-      expect(response).to have_http_status(:success)
+    let(:product_id) { product.id }
+
+    context 'product_id is exist' do
+      it do
+        subject
+        expect(response).to have_http_status(200)
+        assert_schema_conform
+      end
+    end
+
+    context 'product_id is not exist' do
+      let(:product_id) { 99999 }
+
+      it do
+        subject
+        expect(response).to have_http_status(404)
+        assert_schema_conform
+      end
     end
   end
 
   describe 'DELETE #destroy' do
-    subject { delete "/products/#{product.id}" }
+    subject { delete "/products/#{product_id}" }
 
-    it do
-      subject
-      expect(response).to have_http_status(:success)
+    let(:product_id) { product.id }
+
+    context 'product_id is exist' do
+      it do
+        subject
+        expect(response).to have_http_status(204)
+        assert_schema_conform
+      end
+    end
+
+    context 'product_id is not exist' do
+      let(:product_id) { 99999 }
+
+      it do
+        subject
+        expect(response).to have_http_status(404)
+        assert_schema_conform
+      end
     end
   end
 end
