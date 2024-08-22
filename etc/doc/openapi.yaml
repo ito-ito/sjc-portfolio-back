@@ -104,6 +104,97 @@ paths:
         "404":
           $ref: "#/components/responses/notFound"
       security: []
+  /projects:
+    post:
+      tags:
+        - project
+      summary: Create project
+      operationId: postProjects
+      description: Create project
+      requestBody:
+        description: Create a new project
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Project"
+      responses:
+        "201":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "400":
+          $ref: "#/components/responses/invalidInput"
+      security: []
+    get:
+      tags:
+        - project
+      summary: Get all projects.
+      operationId: getProjects
+      description: Index projects
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+      security: []
+  /projects/{id}:
+    get:
+      tags:
+        - project
+      summary: Get project by Id.
+      operationId: getProject
+      description: Show project
+      parameters:
+        - $ref: "#/components/parameters/ProjectId"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+    put:
+      tags:
+        - project
+      summary: Update project by Id.
+      operationId: putProject
+      description: Update project
+      parameters:
+        - $ref: "#/components/parameters/ProjectId"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "400":
+          $ref: "#/components/responses/invalidInput"
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+    delete:
+      tags:
+        - project
+      summary: Delete project by Id.
+      operationId: deleteProject
+      description: Delete project
+      parameters:
+        - $ref: "#/components/parameters/ProjectId"
+      responses:
+        "204":
+          description: Successful operation
+        "404":
+          $ref: "#/components/responses/notFound"
 
 components:
   parameters:
@@ -111,6 +202,14 @@ components:
       name: id
       in: path
       description: 製品ID
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ProjectId:
+      name: id
+      in: path
+      description: プロジェクトID
       required: true
       schema:
         type: integer
@@ -148,6 +247,33 @@ components:
           description: 製品のイメージURL
           example: "https://example.com/sample.png"
       additionalProperties: false
+    Project:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+          readOnly: true
+        title:
+          type: string
+          description: プロジェクト名
+          example: "プロジェクト名"
+        description:
+          type: string
+          nullable: true
+          description: プロジェクトの説明
+          example: "プロジェクトの説明"
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+          nullable: true
+
     Error:
       type: object
       required:
