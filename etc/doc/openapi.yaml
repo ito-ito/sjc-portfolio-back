@@ -195,6 +195,97 @@ paths:
           description: Successful operation
         "404":
           $ref: "#/components/responses/notFound"
+  /skills:
+    post:
+      tags:
+        - skill
+      summary: Create skill
+      operationId: postSkills
+      description: Create skill
+      requestBody:
+        description: Create a new skill
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Skill"
+      responses:
+        "201":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "400":
+          $ref: "#/components/responses/invalidInput"
+      security: []
+    get:
+      tags:
+        - skill
+      summary: Get all skills.
+      operationId: getSkills
+      description: Index skills
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Skill"
+      security: []
+  /skills/{id}:
+    get:
+      tags:
+        - skill
+      summary: Get skill by Id.
+      operationId: getSkill
+      description: Show skill
+      parameters:
+        - $ref: "#/components/parameters/SkillId"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+    put:
+      tags:
+        - skill
+      summary: Update skill by Id.
+      operationId: putSkill
+      description: Update skill
+      parameters:
+        - $ref: "#/components/parameters/SkillId"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "400":
+          $ref: "#/components/responses/invalidInput"
+        "404":
+          $ref: "#/components/responses/notFound"
+      security: []
+    delete:
+      tags:
+        - skill
+      summary: Delete skill by Id.
+      operationId: deleteSkill
+      description: Delete skill
+      parameters:
+        - $ref: "#/components/parameters/SkillId"
+      responses:
+        "204":
+          description: Successful operation
+        "404":
+          $ref: "#/components/responses/notFound"
 
 components:
   parameters:
@@ -210,6 +301,14 @@ components:
       name: id
       in: path
       description: プロジェクトID
+      required: true
+      schema:
+        type: integer
+        format: int64
+    SkillId:
+      name: id
+      in: path
+      description: スキルID
       required: true
       schema:
         type: integer
@@ -273,6 +372,26 @@ components:
           type: string
           format: date
           nullable: true
+    Skill:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+          readOnly: true
+        name:
+          type: string
+          description: スキル名
+          example: "スキル名"
+        level:
+          type: integer
+          format: int8
+          nullable: true
+          description: レベル
+          example: 50
 
     Error:
       type: object
